@@ -1,0 +1,136 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.header {
+    background-color: #176e70;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.header .logo {
+    display: flex;
+    align-items: center;
+}
+
+.header .logo img {
+    width: 50px;
+    margin-right: 10px;
+}
+
+.header .nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.header .nav ul li a {
+    color: white;
+    font-weight: bold;
+}
+
+
+.hero {
+    text-align: center;
+    padding: 2rem;
+    background: #176e70;
+    color: #fff;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero-buttons {
+    margin-top: 1.5rem;
+}
+
+.hero-buttons .btn {
+    background: white;
+    color: #176e70;
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
+    font-weight: bold;
+    margin: 0 0.5rem;
+}
+
+.hero-buttons .btn:hover {
+    background: #fffdd0;
+}
+
+
+.features {
+    padding: 2rem;
+    text-align: center;
+}
+
+.features h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.card {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 200px;
+}
+
+.card i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #176e70;
+}
+
+.card h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+
+.footer {
+    background: #176e70;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+.footer .socials {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.footer .socials li a i {
+    font-size: 1.5rem;
+    color: white;
+}

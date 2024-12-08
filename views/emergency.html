@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Appointment</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Emergency Appointment Request</h1>
+    </header>
+
+    <main>
+        <form action="#">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+            <label for="contact">Contact Number:</label>
+            <input type="tel" id="contact" name="contact" placeholder="Enter your contact number" required>
+
+            <label for="reason">Reason for Emergency:</label>
+            <textarea id="reason" name="reason" rows="5" placeholder="Describe your emergency" required></textarea>
+
+            <button type="submit" class="btn">Submit Request</button>
+        </form>
+    </main>
+</body>
+</html>
