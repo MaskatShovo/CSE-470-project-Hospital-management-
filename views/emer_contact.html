@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Contacts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #e0f7fa, #a0b38b);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            background-color: #176e70;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .contacts-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            gap: 1.5rem;
+            padding: 2rem;
+            flex: 1; 
+        }
+
+        .contact-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            width: 300px;
+            padding: 1.5rem;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-card .icon {
+            font-size: 3rem;
+            color: #ff0000;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            font-size: 1.5rem;
+            color: #176e70;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .contact-card p {
+            font-size: 1rem;
+            color: #555;
+            text-align: center;
+        }
+
+        .footer {
+            background: #176e70;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: auto; 
+        }
+
+        .footer .socials {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .footer .socials li a i {
+            font-size: 1.5rem;
+            color: white;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .footer .socials li a i:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1 class="text-3xl font-bold">Emergency Contacts</h1>
+    </header>
+
+    <main class="p-6">
+        <section class="contacts-section">
+            <div class="contact-card">
+                <div class="icon">
+                    <i class="fas fa-ambulance"></i>
+                </div>
+                <h3>Emergency Ambulance</h3>
+                <p>Contact: +8801710-178858</p>
+            </div>
+
+            <div class="contact-card">
+                <div class="icon">
+                    <i class="fas fa-hospital"></i>
+                </div>
+                <h3>Nearest Hospital</h3>
+                <p>Contact: 566125</p>
+            </div>
+
+            <div class="contact-card">
+                <div class="icon">
+                    <i class="fas fa-phone-alt"></i>
+                </div>
+                <h3>General Helpline</h3>
+                <p>Contact: 934134</p>
+            </div>
+
+            <div class="contact-card">
+                <div class="icon">
+                    <i class="fas fa-user-md"></i>
+                </div>
+                <h3>Doctor On Call</h3>
+                <p>Contact: 0975583871</p>
+            </div>
+
+            <div class="contact-card">
+                <div class="icon">
+                    <i class="fas fa-fire-extinguisher"></i>
+                </div>
+                <h3>Fire Emergency</h3>
+                <p>Contact: 102</p>
+            </div>
+
+            <div class="contact-card">
+                <div class="icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Police Assistance</h3>
+                <p>Contact: 999</p>
+            </div>
+
+            <div class="contact-card">
+                <div class="icon">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <h3>Cardiac Helpline</h3>
+                <p>Contact: 0975589881</p>
+            </div>
+
+            <div class="contact-card">
+                <div class="icon">
+                    <i class="fas fa-child"></i>
+                </div>
+                <h3>Child Helpline</h3>
+                <p>Contact: 1098</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 HealthCare Portal. All rights reserved.</p>
+        <ul class="socials">
+            <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+        </ul>
+    </footer>
+</body>
+</html>

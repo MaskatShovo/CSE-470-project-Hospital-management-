@@ -1,0 +1,307 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #e0f7fa, #a0b38b);
+        }
+
+        .header {
+            background-color: #176e70;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .features-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            gap: 1.5rem;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .second-row {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            grid-column: 1 / span 5;
+        }
+        .emergency-box {
+            background-color: #ffcccc; /* Light red background */
+            border: 2px solid #ff0000; /* Red border */
+        }
+
+        .emergency-box .content h3 {
+            color: #ff0000 !important; /* Force red text for the title */
+            font-weight: bold;
+        }
+
+        .emergency-box .content p {
+            color: #ff0000 !important; /* Force red text for the description */
+            font-weight: bold;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .feature-card .content {
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .feature-card .content h3 {
+            font-size: 1.2rem;
+            color: #176e70;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card .content p {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .profile-slider {
+            position: fixed;
+            top: 0;
+            right: -320px;
+            width: 320px;
+            height: 100%;
+            background-color: #176e70;
+            color: white;
+            padding: 2rem;
+            box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            z-index: 10;
+        }
+
+        .profile-slider.open {
+            right: 0;
+        }
+
+        .profile-slider h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-slider button {
+            display: block;
+            margin: 0.8rem 0;
+            background: #145a5b;
+            color: white;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: left;
+            width: 100%;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .profile-slider button:hover {
+            background: #0f494b;
+        }
+
+        .profile-slider button.logout {
+            background: red;
+        }
+
+        .profile-slider button.logout:hover {
+            background: darkred;
+        }
+
+        .profile-icon {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #176e70;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 1rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .profile-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .footer {
+            background: #176e70;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .footer .socials {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .footer .socials li a i {
+            font-size: 1.5rem;
+            color: white;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .footer .socials li a i:hover {
+            transform: scale(1.2);
+        }
+        
+        .profile-details h1 {
+            text-align: center; /* Centers the text horizontally */
+            /* color: linear-gradient(to right, #9b5f9e, #8d5a9d); Gradient colors */
+            font-size: 2rem; /* Adjust the size as needed */
+            font-weight: bold;
+            background: linear-gradient(to right, #841e91, #feb47b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; /* Makes the gradient visible */
+            /* margin-top: 20%; Centers vertically (adjust as needed) */
+        }
+
+    </style>
+</head>
+<body>
+    <header class="bg-[#176e70] text-white text-center py-6 shadow-lg">
+        <h1 class="text-3xl font-bold">Indigo HealthCare</h1>
+    </header>
+    <!-- Profile Icon -->
+    <button class="profile-icon" onclick="toggleSlider()">
+        <i class="fas fa-user"></i>
+    </button>
+
+    <!-- Profile Slider -->
+    <div id="profileSlider" class="profile-slider">
+        <h2>My Profile</h2>
+        <button onclick="window.location.href='{{ url_for('main_routes.update_profile', email=user[4]) }}'">Update Profile</button>
+        <button onclick="alert('Appointment History')">Appointment History</button>
+        <button onclick="alert('Email Notifications')">Email Notifications</button>
+        <button onclick="window.location.href='{{ url_for('main_routes.health_record', email=user[4]) }}'">Health Record Upload</button>
+        <button class="logout" onclick="window.location.href='{{ url_for('main_routes.logout') }}'">Logout</button>
+
+    </div>
+
+
+    <main class="p-6">
+        <div class="profile-details">
+            <h1>Welcome {{ user[1] }} {{ user[2] }}</h1>
+        </div>
+            <div class="features-section">
+                <div class="feature-card">
+                    <img src="{{ url_for('static', filename='images/dynamic.jpg') }}" alt="Feature_1">
+                    <div class="content">
+                        <h3>Dynamic Slot Booking</h3>
+                        <p>Book appointments effortlessly with our dynamic scheduling system.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <img src="{{ url_for('static', filename='images/cancel.jpg') }}" alt="Feature_2">
+                    <div class="content">
+                        <h3>Cancel Appointment</h3>
+                        <p>Need to cancel? No problem, manage it with ease.</p>
+                    </div>
+                </div>
+                <div class="feature-card emergency-box">
+                    <img src="{{ url_for('static', filename='images/emergency.jpg') }}" alt="Feature_3">
+                    <div class="content">
+                        <h3>Emergency Appointment</h3>
+                        <p>Quickly book emergency slots when you need them most.</p>
+                    </div>
+                </div>
+                <div class="feature-card" onclick="window.location.href='{{ url_for('main_routes.question2_page') }}'" style="cursor: pointer;">
+                    <img src="{{ url_for('static', filename='images/profile.jpg') }}" alt="Feature_4">
+                    <div class="content">
+                        <h3>Doctor Profiles</h3>
+                        <p>View detailed profiles of our expert doctors.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <img src="{{ url_for('static', filename='images/availability.jpg') }}" alt="Feature_5">
+                    <div class="content">
+                        <h3>Doctor Availability</h3>
+                        <p>Check availability and schedule your appointments.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <img src="{{ url_for('static', filename='images/service.jpg') }}" alt="Feature_6">
+                    <div class="content">
+                        <h3>Service Listings</h3>
+                        <p>Explore all the services we provide in one place.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <img src="{{ url_for('static', filename='images/faq.jpg') }}" alt="Feature_7">
+                    <div class="content">
+                        <h3>FAQ Section</h3>
+                        <p>Find answers to frequently asked questions.</p>
+                    </div>
+                </div>
+            </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 HealthCare Portal. All rights reserved.</p>
+        <ul class="socials">
+            <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+        </ul>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const slider = document.getElementById('profileSlider');
+            const profileIcon = document.querySelector('.profile-icon');
+    
+            // Toggle the slider
+            profileIcon.addEventListener('click', function (event) {
+                event.stopPropagation(); // Prevent triggering the document click
+                slider.classList.toggle('open');
+            });
+    
+            // Close the slider when clicking anywhere else
+            document.addEventListener('click', function (event) {
+                if (!slider.contains(event.target) && slider.classList.contains('open')) {
+                    slider.classList.remove('open');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
