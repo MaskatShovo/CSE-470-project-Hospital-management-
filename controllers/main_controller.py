@@ -209,7 +209,7 @@ def dynamic():
         create_appointment(email, date, slot, doctor, hospital)
         return redirect(url_for('main_routes.patient_profile', email=email))
     
-    # Get email from query parameters
+
     email = request.args.get('email')
     return render_template('dynamic.html', email=email)
 
@@ -287,11 +287,11 @@ def emergency():
     pdf.set_font("Arial", style="B", size=14)
     pdf.cell(0, 10, "THIS APPOINTMENT WILL BE PRIORITY", ln=True, align="C", fill=True)
 
-    # Save PDF to static folder
+ 
     pdf_file = f"static/{name}_emergency_appointment.pdf"
     pdf.output(pdf_file)
 
-    # Return the file URL to the frontend
+
     return {
         "file_url": url_for('static', filename=f"{name}_emergency_appointment.pdf"),
         "redirect_url": url_for('main_routes.patient_profile', email=email)
@@ -312,10 +312,10 @@ def submit_feedback():
         improvements = request.form['improvements']
         comments = request.form['comments']
 
-        # Save feedback to the database
+
         save_feedback(email, appointment_rating, emergency_rating, compatibility_rating, improvements, comments)
 
-        # Redirect back to patient profile page
+
         return redirect(url_for('main_routes.patient_profile', email=email))
     except Exception as e:
         print(f"Error: {e}")
@@ -347,10 +347,10 @@ def book_cabin(cabin_type):
         email = request.form['email']
         booking_date = request.form['booking_date']
 
-        # Save the booking to the database
+
         save_cabin_booking(email, cabin_type, booking_date)
 
-        # Show a success message
+
         flash('Cabin booking successful!', 'success')
         return redirect(url_for('main_routes.patient_profile', email=email))
     except Exception as e:
@@ -365,10 +365,10 @@ def book_tests(test_name):
         email = request.form['email']
         booking_date = request.form['booking_date']
 
-        # Save booking data to the database
+
         save_test_booking(email, test_name, booking_date)
 
-        # Show a success message
+
         flash('Test booking successful!', 'success')
         return redirect(url_for('main_routes.patient_profile', email=email))
     except Exception as e:
@@ -402,10 +402,10 @@ def book_fitness(plan_name):
 @main_routes.route('/appointments-subscriptions/<email>', methods=['GET'])
 def appointments_subscriptions(email):
     try:
-        # Fetch cabin bookings
+
         cabin_bookings = get_cabin_bookings_by_email(email)
 
-        # Fetch test bookings
+
         test_bookings = get_test_bookings_by_email(email)
 
         return render_template(
@@ -429,11 +429,11 @@ def admin_login_page():
 
 @main_routes.route('/admin-login', methods=['POST'])
 def admin_login():
-    from models.user_model import validate_admin_password  # Import the function for validation
+    from models.user_model import validate_admin_password  
 
     password = request.form['password']
 
-    # Validate the password using the database
+
     if validate_admin_password(password):
         return redirect(url_for('main_routes.admin_dashboard'))
     else:
@@ -445,10 +445,10 @@ def admin_login():
 def feedback_analytics():
     from models.user_model import get_feedback_data
 
-    # Fetch feedback data from the database
+
     feedback_data = get_feedback_data()
 
-    # Pass data to the template
+
     return render_template('feedback_analytics.html', feedback_data=feedback_data)
 
 
@@ -506,19 +506,19 @@ def data_export():
 
 @main_routes.route('/export-patients')
 def export_patients():
-    from models.user_model import get_all_users  # Assuming you need a function to get all users
+    from models.user_model import get_all_users  
     import csv
     from flask import Response
 
-    # Fetch all users
+
     users = get_all_users()
 
-    # Create CSV in memory
+
     csv_data = "ID,First Name,Last Name,Phone,Email,NID\n"
     for user in users:
         csv_data += f"{user['id']},{user['first_name']},{user['last_name']},{user['phone']},{user['email']},{user['nid']}\n"
 
-    # Return the file as a response
+
     return Response(
         csv_data,
         mimetype="text/csv",
@@ -531,15 +531,14 @@ def export_doctors():
     import csv
     from flask import Response
 
-    # Fetch all doctors
     doctors = get_all_doctors()
 
-    # Create CSV in memory
+
     csv_data = "ID,Name,Qualification,Department,Experience,Availability\n"
     for doc in doctors:
         csv_data += f"{doc['id']},{doc['name']},{doc['qualification']},{doc['department']},{doc['experience']},{doc['availability']}\n"
 
-    # Return the file as a response
+
     return Response(
         csv_data,
         mimetype="text/csv",
