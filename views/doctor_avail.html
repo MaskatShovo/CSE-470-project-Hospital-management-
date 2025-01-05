@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Availability</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body { font-family: 'Roboto', sans-serif; margin: 0; padding: 0; background: linear-gradient(135deg, #e0f7fa, #a0b38b); }
+        .header { background-color: #176e70; color: white; text-align: center; padding: 2rem 0; }
+        .doctor-list { padding: 2rem; display: flex; flex-wrap: wrap; justify-content: space-around; gap: 1.5rem; }
+        .doctor-card { background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); overflow: hidden; width: 300px; padding: 1rem; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .doctor-card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); }
+        .doctor-card h3 { font-size: 1.2rem; color: #176e70; margin-bottom: 0.5rem; }
+        .doctor-card button { background: #176e70; color: white; padding: 0.5rem 1rem; border: none; border-radius: 8px; cursor: pointer; transition: background 0.3s ease; }
+        .doctor-card button:hover { background: #0f494b; }
+        .search-bar { margin: 1rem; text-align: center; }
+        .search-bar input { width: 50%; padding: 0.5rem; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem; }
+        .footer { background: #176e70; color: white; text-align: center; padding: 2rem; margin-top: 2rem; }
+
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity 0.3s ease;
+        }
+        .modal.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        .modal-content {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 400px;
+        }
+        .modal-content h2 {
+            color: #176e70;
+            margin-bottom: 1rem;
+        }
+        .modal-content p {
+            margin: 0.5rem 0;
+        }
+        .modal-content .day {
+            color: #176e70;
+            font-weight: bold;
+        }
+        .modal-content .time {
+            color: #ff6f61;
+        }
+        .close-modal {
+            background: #176e70;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+        .close-modal:hover {
+            background: #0f494b;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1 class="text-3xl font-bold">Doctor Availability</h1>
+    </header>
+
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search by doctor name..." oninput="filterDoctors()">
+    </div>
+
+    <div id="doctorList" class="doctor-list">
+        {% for doctor in doctors %}
+        <div class="doctor-card">
+            <h3>{{ doctor.name }}</h3>
+            <p>{{ doctor.qualification }}</p>
+            <button onclick="showAvailability('{{ doctor.name }}', '{{ doctor.availability }}')">Check Availability</button>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div id="availabilityModal" class="modal">
+        <div class="modal-content">
+            <h2 id="modalDoctorName"></h2>
+            <div id="modalAvailability"></div>
+            <button class="close-modal" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 HealthCare Portal. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const doctors = {{ doctors|tojson|safe }};
+        const doctorList = document.getElementById('doctorList');
+        const modal = document.getElementById('availabilityModal');
+        const modalDoctorName = document.getElementById('modalDoctorName');
+        const modalAvailability = document.getElementById('modalAvailability');
+
+        function showAvailability(name, availability) {
+            modalDoctorName.textContent = name;
+            modalAvailability.innerHTML = availability
+                .split(', ')
+                .map(item => {
+                    const [day, time] = item.split(':');
+                    return `<p><span class="day">${day}:</span> <span class="time">${time.trim()}</span></p>`;
+                })
+                .join('');
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        function filterDoctors() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = doctors.filter(doctor => doctor.name.toLowerCase().includes(query));
+            doctorList.innerHTML = '';
+            filtered.forEach(doctor => {
+                const card = document.createElement('div');
+                card.classList.add('doctor-card');
+                card.innerHTML = `
+                    <h3>${doctor.name}</h3>
+                    <p>${doctor.qualification}</p>
+                    <button onclick="showAvailability('${doctor.name}', '${doctor.availability}')">Check Availability</button>
+                `;
+                doctorList.appendChild(card);
+            });
+        }
+    </script>
+</body>
+</html>

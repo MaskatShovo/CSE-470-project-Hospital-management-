@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Blogs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .header {
+            background-color: #176e70;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .blogs {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .blogs h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #176e70;
+        }
+
+        .blog-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .blog-list article {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .blog-list article h3 {
+            color: #176e70;
+            margin: 0 0 0.5rem 0;
+        }
+
+        .blog-list article p {
+            margin: 0 0 1rem 0;
+        }
+
+        .blog-list article button {
+            background-color: #176e70;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .blog-list article button:hover {
+            background-color: #145c5e;
+        }
+
+        .blog-list article button:focus {
+            outline: none;
+            box-shadow: 0 0 4px #176e70;
+        }
+
+        .footer {
+            background-color: #176e70;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Health Blogs</h1>
+    </header>
+
+    <main>
+        <section class="blogs">
+            <h2>Explore Articles</h2>
+            <div class="blog-list">
+                <!-- Article 1 -->
+                <article>
+                    <h3>Tips for a Healthy Lifestyle</h3>
+                    <p>Discover simple ways to improve your daily routine and lead a healthier life.</p>
+                    <button onclick="toggleDetails('blog1')">Read More</button>
+                    <div id="blog1" style="display: none; margin-top: 1rem;">
+                        <p>Engage in physical activities daily to maintain your fitness and health.</p>
+                        <p>Incorporate a mix of proteins, carbohydrates, and fats into your meals.</p>
+                        <p>Aim for 7-8 hours of quality sleep to rejuvenate your body and mind.</p>
+                        <button onclick="toggleDetails('blog1')">Show Less</button>
+                    </div>
+                </article>
+                <!-- Article 2 -->
+                <article>
+                    <h3>Understanding Mental Health</h3>
+                    <p>Learn about the importance of mental health and how to care for your mind.</p>
+                    <button onclick="toggleDetails('blog2')">Read More</button>
+                    <div id="blog2" style="display: none; margin-top: 1rem;">
+                        <p>Practice mindfulness techniques like meditation to stay present and calm.</p>
+                        <p>Reach out to a trusted friend or professional when feeling overwhelmed.</p>
+                        <p>Maintain a healthy work-life balance to reduce stress and anxiety.</p>
+                        <button onclick="toggleDetails('blog2')">Show Less</button>
+                    </div>
+                </article>
+                <!-- Article 3 -->
+                <article>
+                    <h3>Nutrition Essentials</h3>
+                    <p>Find out what your body needs for a balanced and nutritious diet.</p>
+                    <button onclick="toggleDetails('blog3')">Read More</button>
+                    <div id="blog3" style="display: none; margin-top: 1rem;">
+                        <p>Include a variety of fruits and vegetables in your meals for essential vitamins.</p>
+                        <p>Stay hydrated by drinking at least 8 glasses of water daily.</p>
+                        <p>Limit processed foods and focus on whole, natural ingredients.</p>
+                        <button onclick="toggleDetails('blog3')">Show Less</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Indigo HealthCare. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleDetails(id) {
+            const blogContent = document.getElementById(id);
+            if (blogContent.style.display === "none") {
+                blogContent.style.display = "block";
+            } else {
+                blogContent.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

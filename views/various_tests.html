@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Various Tests</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f3f4f6, #e8f5e9);
+        }
+
+        .header {
+            background-color: #176e70;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 1.25rem;
+            color: #333;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 1rem;
+        }
+
+        .card-content h3 {
+            font-size: 1.25rem;
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-content p {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+
+        .price {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #10b981;
+        }
+
+        .price.strikethrough {
+            text-decoration: line-through;
+            color: #ef4444;
+        }
+
+        .discount {
+            background-color: #ef4444;
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.5rem;
+        }
+
+        .button {
+            background-color: #1e3a8a;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #1e40af;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Book Diagnostic Tests</h1>
+    </header>
+
+    <div class="message">
+        Welcome, {{ email }}! Select a test type and date to proceed with your booking.
+    </div>
+
+    <main class="grid-container">
+        <!-- Card 1 -->
+        <div class="card">
+            <img src="{{ url_for('static', filename='images/cbc.jpg') }}" alt="CBC Test">
+            <div class="card-content">
+                <h3>CBC</h3>
+                <p>A Comprehensive Blood Analysis for Holistic Health</p>
+                <p class="price">৳400</p>
+                <form action="/book-tests/cbc" method="POST">
+                    <input type="hidden" name="email" value="{{ email }}">
+                    <label for="cbc-date">Choose Date:</label>
+                    <input type="date" id="cbc-date" name="booking_date" required>
+                    <button type="submit" class="bg-green-700 text-white mt-3 p-2 rounded">Book Now</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+            <img src="{{ url_for('static', filename='images/dengue.jpg') }}" alt="Dengue NS1 Ag Test">
+            <div class="card-content">
+                <h3>Dengue NS1 Ag</h3>
+                <p>Rapid Detection for Dengue: Unveiling Insights</p>
+                <p class="price strikethrough">৳400</p>
+                <p class="price">৳300<span class="discount">10% OFF</span></p>
+                <form action="/book-tests/dengue" method="POST">
+                    <input type="hidden" name="email" value="{{ email }}">
+                    <label for="dengue-date">Choose Date:</label>
+                    <input type="date" id="dengue-date" name="booking_date" required>
+                    <button type="submit" class="bg-green-700 text-white mt-3 p-2 rounded">Book Now</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card">
+            <img src="{{ url_for('static', filename='images/serum.jpg') }}" alt="Serum Creatinine Test">
+            <div class="card-content">
+                <h3>Serum Creatinine</h3>
+                <p>Renal Function Insight for Comprehensive Kidney Health</p>
+                <p class="price strikethrough">৳400</p>
+                <p class="price">৳320 <span class="discount">20% OFF</span></p>
+                <form action="/book-tests/serum" method="POST">
+                    <input type="hidden" name="email" value="{{ email }}">
+                    <label for="serum-date">Choose Date:</label>
+                    <input type="date" id="serum-date" name="booking_date" required>
+                    <button type="submit" class="bg-green-700 text-white mt-3 p-2 rounded">Book Now</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Additional Test Cards -->
+        <div class="card">
+            <img src="{{ url_for('static', filename='images/lipid.jpg') }}" alt="Lipid Profile">
+            <div class="card-content">
+                <h3>Lipid Profile</h3>
+                <p>Comprehensive Lipid and Cholesterol Testing</p>
+                <p class="price">৳500</p>
+                <form action="/book-tests/lipid" method="POST">
+                    <input type="hidden" name="email" value="{{ email }}">
+                    <label for="lipid">Choose Date:</label>
+                    <input type="date" id="lipid-date" name="booking_date" required>
+                    <button type="submit" class="bg-green-700 text-white mt-3 p-2 rounded">Book Now</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Repeat for Other Test Cards -->
+    </main>
+</body>
+</html>

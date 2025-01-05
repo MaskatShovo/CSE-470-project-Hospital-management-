@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Fitness Plans</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f3f4f6, #e8f5e9);
+        }
+
+        .header {
+            background-color: #176e70;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 1.25rem;
+            color: #333;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 1rem;
+        }
+
+        .card-content h3 {
+            font-size: 1.25rem;
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-content p {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+
+        .price {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #ef4444;
+        }
+
+        .card form {
+            margin-top: 1rem;
+        }
+
+        .card form label {
+            font-size: 0.875rem;
+            color: #333;
+        }
+
+        .card form input {
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .card form button {
+            background-color: #1e3a8a;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .card form button:hover {
+            background-color: #1e40af;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Personalized Fitness Plans</h1>
+    </header>
+
+    <div class="message">
+        Welcome, {{ email }}! , Choose a fitness plan tailored to your goals and start your journey today!
+    </div>
+
+    <main class="grid-container">
+        <!-- Plan 1 -->
+        <div class="card">
+            <img src="{{ url_for('static', filename='images/weight.jpg') }}" alt="Weight Loss Plan">
+            <div class="card-content">
+                <h3>Weight Loss Plan</h3>
+                <p>A comprehensive plan to help you shed those extra pounds effectively.</p>
+                <p class="price">৳1000</p>
+                <form action="/book-plan/weight" method="POST">
+                    <input type="hidden" name="email" value="{{ email }}">
+                    <label for="weight-loss-date">Choose Date:</label>
+                    <input type="date" id="weight-loss-date" name="booking_date" required>
+                    <input type="hidden" name="plan_name" value="Weight Loss Plan">
+                    <input type="hidden" name="price" value="1000">
+                    <button type="submit">Book Now</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Plan 2 -->
+        <div class="card">
+            <img src="{{ url_for('static', filename='images/muscle.jpg') }}" alt="Muscle Gain Plan">
+            <div class="card-content">
+                <h3>Muscle Gain Plan</h3>
+                <p>Designed for strength and muscle building with tailored workouts and diet.</p>
+                <p class="price">৳1200</p>
+                <form action="/book-plan/muscle" method="POST">
+                    <input type="hidden" name="email" value="{{ email }}">
+                    <label for="muscle-gain-date">Choose Date:</label>
+                    <input type="date" id="muscle-gain-date" name="booking_date" required>
+                    <input type="hidden" name="plan_name" value="Muscle Gain Plan">
+                    <input type="hidden" name="price" value="1200">
+                    <button type="submit">Book Now</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Plan 3 -->
+        <div class="card">
+            <img src="{{ url_for('static', filename='images/yoga.jpg') }}"alt="Flexibility & Yoga">
+            <div class="card-content">
+                <h3>Flexibility & Yoga</h3>
+                <p>Improve your flexibility and mindfulness with our yoga-based plan.</p>
+                <p class="price">৳900</p>
+                <form action="/book-plan/yoga" method="POST">
+                    <input type="hidden" name="email" value="{{ email }}">
+                    <label for="flexibility-date">Choose Date:</label>
+                    <input type="date" id="flexibility-date" name="booking_date" required>
+                    <input type="hidden" name="plan_name" value="Flexibility & Yoga">
+                    <input type="hidden" name="price" value="900">
+                    <button type="submit">Book Now</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Plan 4 -->
+        <div class="card">
+            <img src="{{ url_for('static', filename='images/general.jpg') }}" alt="General Fitness">
+            <div class="card-content">
+                <h3>General Fitness</h3>
+                <p>Maintain your fitness levels with balanced workouts and diet tips.</p>
+                <p class="price">৳800</p>
+                <form action="/book-plan/general" method="POST">
+                    <input type="hidden" name="email" value="{{ email }}">
+                    <label for="general-fitness-date">Choose Date:</label>
+                    <input type="date" id="general-fitness-date" name="booking_date" required>
+                    <input type="hidden" name="plan_name" value="General Fitness">
+                    <button type="submit">Book Now</button>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

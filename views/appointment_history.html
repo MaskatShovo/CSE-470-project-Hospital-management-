@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment History</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        main {
+            flex-grow: 1;
+        }
+
+        footer {
+            background-color: #176e70;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-green-700 text-white text-center py-6">
+        <h1 class="text-3xl font-bold">Appointment History</h1>
+    </header>
+
+    <main class="container mx-auto p-6">
+        <h2 class="text-2xl font-bold mb-4">Your Appointments</h2>
+        <table class="table-auto w-full border-collapse border border-gray-300">
+            <thead>
+                <tr class="bg-green-200">
+                    <th class="border border-gray-300 px-4 py-2">Date</th>
+                    <th class="border border-gray-300 px-4 py-2">Slot</th>
+                    <th class="border border-gray-300 px-4 py-2">Doctor</th>
+                    <th class="border border-gray-300 px-4 py-2">Hospital</th>
+                    <th class="border border-gray-300 px-4 py-2">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appointment in appointments %}
+                <tr>
+                    <td class="border border-gray-300 px-4 py-2">{{ appointment[2] }}</td> <!-- Date -->
+                    <td class="border border-gray-300 px-4 py-2">{{ appointment[3] }}</td> <!-- Slot -->
+                    <td class="border border-gray-300 px-4 py-2">{{ appointment[4] }}</td> <!-- Doctor -->
+                    <td class="border border-gray-300 px-4 py-2">{{ appointment[5] }}</td> <!-- Hospital -->
+                    <td class="border border-gray-300 px-4 py-2">
+                        <form action="/cancel-appointment" method="post">
+                            <input type="hidden" name="appointment_id" value="{{ appointment[0] }}">
+                            <input type="hidden" name="email" value="{{ email }}">
+                            <button type="submit" class="bg-red-600 text-white px-3 py-1 rounded">Cancel</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Indigo HealthCare. All rights reserved.</p>
+    </footer>
+</body>
+</html>

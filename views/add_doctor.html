@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Doctor</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .header {
+            background-color: #176e70;
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .form-container input,
+        .form-container select,
+        .form-container textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-container button {
+            background-color: #176e70;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .form-container button:hover {
+            background-color: #144d4e;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Add New Doctor</h1>
+    </header>
+    <div class="form-container">
+        <form action="/add-doctor" method="POST">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter doctor's name" required>
+
+            <label for="qualification">Qualification</label>
+            <input type="text" id="qualification" name="qualification" placeholder="Enter qualification" required>
+
+            <label for="department">Department</label>
+            <input type="text" id="department" name="department" placeholder="Enter department" required>
+
+            <label for="availability">Availability</label>
+            <textarea id="availability" name="availability" rows="3" placeholder="Enter availability schedule" required></textarea>
+
+            <label for="experience">Experience (years)</label>
+            <input type="number" id="experience" name="experience" placeholder="Enter years of experience" required>
+
+            <button type="submit">Add Doctor</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Listings</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+       body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #e0f7fa, #a0b38b);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            background-color: #176e70;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .service-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            width: 300px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .service-card .content {
+            padding: 1rem;
+        }
+
+        .service-card .content h3 {
+            font-size: 1.5rem;
+            color: #176e70;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-card .content p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .service-card button {
+            background: #176e70;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .service-card button:hover {
+            background: #144d4e;
+        }
+
+        .footer {
+            background: #176e70;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: auto; 
+        }
+
+        .footer .socials {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .footer .socials li a i {
+            font-size: 1.5rem;
+            color: white;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .footer .socials li a i:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1 class="text-3xl font-bold">Our Services</h1>
+    </header>
+
+    <main>
+        <div class="service-section">
+            <!-- Hospital Cabin Booking -->
+            <div class="service-card">
+                <img src="{{ url_for('static', filename='images/cabin.jpg') }}" alt="Cabin Booking">
+                <div class="content">
+                    <h3>Hospital Cabin Booking</h3>
+                    <p>Book your hospital cabin with ease and comfort.</p>
+                    <button onclick="window.location.href='/cabin-booking/{{ email }}'">Book Now</button>
+                </div>
+            </div>
+
+            <!-- Various Tests -->
+            <div class="service-card">
+                <img src="{{ url_for('static', filename='images/tests.jpg') }}" alt="Various Tests">
+                <div class="content">
+                    <h3>Various Tests</h3>
+                    <p>Book pathology and diagnostic tests online.</p>
+                    <button onclick="window.location.href='/various-tests/{{ email }}'">Book Now</button>
+                </div>
+            </div>
+
+            <!-- Fitness Plans -->
+            <div class="service-card">
+                <img src="{{ url_for('static', filename='images/fitness.jpg') }}" alt="Fitness Plans">
+                <div class="content">
+                    <h3>Personalized Fitness Plans</h3>
+                    <p>Stay fit with custom fitness plans tailored for you.</p>
+                    <button onclick="window.location.href='/fitness-plan/{{ email }}'">Get Plan</button>
+                </div>
+            </div>
+
+            <!-- Health Insurance Assistance -->
+            <div class="service-card">
+                <img src="{{ url_for('static', filename='images/insurance.jpg') }}" alt="Health Insurance">
+                <div class="content">
+                    <h3>Health Insurance Assistance</h3>
+                    <p>Get help with choosing the best health insurance plans.</p>
+                    <button onclick="window.location.href='/insurance-assistance/{{ email }}'">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 HealthCare Portal. All rights reserved.</p>
+        <ul class="socials">
+            <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+        </ul>
+    </footer>
+</body>
+</html>

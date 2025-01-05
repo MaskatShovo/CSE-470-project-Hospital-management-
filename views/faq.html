@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #e0f7fa, #a0b38b);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            background-color: #176e70;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .faq-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            flex: 1;
+        }
+
+        .faq-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 1.5rem;
+        }
+
+        .faq-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .faq-card h3 {
+            font-size: 1.5rem;
+            color: #176e70;
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-card p {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .footer {
+            background: #176e70;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: auto;
+        }
+
+        .footer .socials {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .footer .socials li a i {
+            font-size: 1.5rem;
+            color: white;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .footer .socials li a i:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1 class="text-3xl font-bold">Frequently Asked Questions</h1>
+    </header>
+
+    <main class="p-6">
+        <section class="faq-section">
+            <div class="faq-card">
+                <h3>What services does the HealthCare Portal provide?</h3>
+                <p>We provide appointment booking, doctor profiles, emergency contact information, and access to health records.</p>
+            </div>
+
+            <div class="faq-card">
+                <h3>How do I book an appointment?</h3>
+                <p>You can book an appointment by navigating to the "Book Appointment" section on the homepage and selecting your preferred doctor and time slot.</p>
+            </div>
+
+            <div class="faq-card">
+                <h3>Can I update my profile information?</h3>
+                <p>Yes, you can update your profile by visiting the "My Profile" section and selecting the "Update Profile" option.</p>
+            </div>
+
+            <div class="faq-card">
+                <h3>What should I do in case of an emergency?</h3>
+                <p>In case of an emergency, visit the "Emergency Contacts" section for details on ambulances, hospitals, and helplines.</p>
+            </div>
+
+            <div class="faq-card">
+                <h3>How can I reset my password?</h3>
+                <p>You can reset your password by clicking on the "Forgot Password" link on the login page and following the instructions.</p>
+            </div>
+
+            <div class="faq-card">
+                <h3>Is my data secure?</h3>
+                <p>Yes, we prioritize your data security by following industry-standard encryption and protection measures.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 HealthCare Portal. All rights reserved.</p>
+        <ul class="socials">
+            <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+        </ul>
+    </footer>
+</body>
+</html>

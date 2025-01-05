@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointments & Subscriptions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            background-color: #176e70;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .content {
+            padding: 2rem;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+        }
+
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .table th {
+            background-color: #176e70;
+            color: white;
+        }
+
+        .no-data {
+            text-align: center;
+            font-size: 1.25rem;
+            color: #555;
+            margin-top: 2rem;
+        }
+
+        .footer {
+            background: #176e70;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: auto; 
+        }
+
+        .footer .socials {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .footer .socials li a i {
+            font-size: 1.5rem;
+            color: white;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .footer .socials li a i:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Appointments & Subscriptions</h1>
+    </header>
+    <main class="content">
+        <h2>Your Cabin Bookings</h2>
+        {% if cabin_bookings %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Cabin Type</th>
+                    <th>Booking Date</th>
+                    <th>Created At</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in cabin_bookings %}
+                <tr>
+                    <td>{{ booking.cabin_type }}</td>
+                    <td>{{ booking.booking_date }}</td>
+                    <td>{{ booking.created_at }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="no-data">No cabin bookings found.</p>
+        {% endif %}
+
+        <h2>Your Test Bookings</h2>
+        {% if test_bookings %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Test Name</th>
+                    <th>Booking Date</th>
+                    <th>Created At</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for booking in test_bookings %}
+                <tr>
+                    <td>{{ booking.test_name }}</td>
+                    <td>{{ booking.booking_date }}</td>
+                    <td>{{ booking.created_at }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="no-data">No test bookings found.</p>
+        {% endif %}
+    </main>
+    <footer class="footer">
+        <p>&copy; 2024 HealthCare Portal. All rights reserved.</p>
+        <ul class="socials">
+            <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+        </ul>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #e0f7fa, #a0b38b);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            background-color: #176e70;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .form-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            width: 100%;
+            max-width: 600px;
+            text-align: left;
+        }
+
+        .form-card h3 {
+            font-size: 1.5rem;
+            color: #176e70;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .form-card ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .form-card ul li {
+            margin-bottom: 1rem;
+        }
+
+        .form-card label {
+            font-size: 1.2rem;
+            color: #f56e14;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px #ffffff;
+        }
+
+        .form-card input[type="radio"] {
+            margin-right: 0.5rem;
+        }
+
+        .form-card textarea {
+            width: 100%;
+            padding: 0.75rem;
+            margin-top: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-card textarea::placeholder {
+            color: #176e70;
+            opacity: 0.8;
+        }
+
+        .form-card button {
+            background-color: #176e70;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem auto 0 auto;
+        }
+
+        .form-card button:hover {
+            background-color: #144d4e;
+        }
+
+        .footer {
+            background: #176e70;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: auto; 
+        }
+
+        .footer .socials {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .footer .socials li a i {
+            font-size: 1.5rem;
+            color: white;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .footer .socials li a i:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1 class="text-3xl font-bold">Feedback</h1>
+    </header>
+
+    <main>
+        <div class="form-section">
+            <div class="form-card">
+                <h3>We value your feedback!</h3>
+                <form action="/submit-feedback" method="POST">
+                    <input type="hidden" name="email" value="{{ email }}"> <!-- Dynamically passed -->
+                    <ul>
+                        <li>
+                            <label>Appointment Service</label>
+                            <input type="radio" name="appointment_rating" value="good" required> Good
+                            <input type="radio" name="appointment_rating" value="average" required> Average
+                            <input type="radio" name="appointment_rating" value="poor" required> Poor
+                        </li>
+                        <li>
+                            <label>Emergency Service</label>
+                            <input type="radio" name="emergency_rating" value="good" required> Good
+                            <input type="radio" name="emergency_rating" value="average" required> Average
+                            <input type="radio" name="emergency_rating" value="poor" required> Poor
+                        </li>
+                        <li>
+                            <label>Customer Compatibility</label>
+                            <input type="radio" name="compatibility_rating" value="good" required> Good
+                            <input type="radio" name="compatibility_rating" value="average" required> Average
+                            <input type="radio" name="compatibility_rating" value="poor" required> Poor
+                        </li>
+                    </ul>
+
+                    <label for="improvements">Things to Improve</label>
+                    <textarea id="improvements" name="improvements" rows="3" placeholder="What can we improve?" required></textarea>
+
+                    <label for="comments">Additional Comments</label>
+                    <textarea id="comments" name="comments" rows="5" placeholder="Write your comments here..." required></textarea>
+
+                    <button type="submit">Submit Feedback</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 HealthCare Portal. All rights reserved.</p>
+        <ul class="socials">
+            <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+        </ul>
+    </footer>
+</body>
+</html>
