@@ -185,14 +185,14 @@
         }
         
         .profile-details h1 {
-            text-align: center; /* Centers the text horizontally */
-            /* color: linear-gradient(to right, #9b5f9e, #8d5a9d); Gradient colors */
-            font-size: 2rem; /* Adjust the size as needed */
+            text-align: center; 
+
+            font-size: 2rem; 
             font-weight: bold;
             background: linear-gradient(to right, #841e91, #feb47b);
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent; /* Makes the gradient visible */
-            /* margin-top: 20%; Centers vertically (adjust as needed) */
+            -webkit-text-fill-color: transparent; 
+
         }
 
     </style>
@@ -201,12 +201,12 @@
     <header class="bg-[#176e70] text-white text-center py-6 shadow-lg">
         <h1 class="text-3xl font-bold">Indigo HealthCare</h1>
     </header>
-    <!-- Profile Icon -->
+
     <button class="profile-icon" onclick="toggleSlider()">
         <i class="fas fa-user"></i>
     </button>
 
-    <!-- Profile Slider -->
+
     <div id="profileSlider" class="profile-slider">
         <h2>My Profile</h2>
         <button onclick="window.location.href='{{ url_for('main_routes.update_profile', email=user[4]) }}'">Update Profile</button>
@@ -291,13 +291,13 @@
             const slider = document.getElementById('profileSlider');
             const profileIcon = document.querySelector('.profile-icon');
     
-            // Toggle the slider
+
             profileIcon.addEventListener('click', function (event) {
-                event.stopPropagation(); // Prevent triggering the document click
+                event.stopPropagation(); 
                 slider.classList.toggle('open');
             });
     
-            // Close the slider when clicking anywhere else
+
             document.addEventListener('click', function (event) {
                 if (!slider.contains(event.target) && slider.classList.contains('open')) {
                     slider.classList.remove('open');
