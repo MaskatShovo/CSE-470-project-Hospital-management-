@@ -184,14 +184,13 @@ def validate_admin_password(entered_password):
     stored_password = cursor.fetchone()[0]
     cursor.close()
 
-    # Compare the entered password with the stored password
+
     return entered_password == stored_password
 
 
 def get_feedback_data():
     cursor = mysql.connection.cursor()
 
-    # Count feedback ratings for each category
     cursor.execute("""
         SELECT
             SUM(appointment_rating = 'good') AS appointment_good,
@@ -208,7 +207,7 @@ def get_feedback_data():
     result = cursor.fetchone()
     cursor.close()
 
-    # Return the data as a dictionary
+
     return {
         "Appointment Good": result[0],
         "Appointment Average": result[1],
@@ -280,7 +279,7 @@ def get_all_appointments_data():
     results = cursor.fetchall()
     cursor.close()
 
-    # Map results to a dictionary
+
     return [
         {
             "email": row[0],
